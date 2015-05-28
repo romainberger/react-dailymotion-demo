@@ -1,0 +1,11 @@
+.user-display {
+    position: relative;
+    height: 0;
+    transition: height .1s linear;
+    overflow: hidden;
+    font-size: 0;
+}
+
+.user-display.current {
+    height: 358px;
+}
