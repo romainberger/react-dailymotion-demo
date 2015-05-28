@@ -22,8 +22,8 @@ export default class Home extends React.Component {
         if (typeof cache[id] === 'undefined') {
             cache[id] = this.props.user.list.map((video, i) => {
                 return (
-                    <div className="col-md-1" style={this.style.video} key={i}>
-                        <img src={video.thumbnail_360_url} style={this.style.thumbnail} />
+                    <div className="col-md-1" key={i}>
+                        <img src={video.thumbnail_360_url} width="100%" />
                     </div>
                 )
             })
@@ -61,7 +61,7 @@ export default class Home extends React.Component {
         return users.map((usersSet, i) => {
             let listChunk = this.getUserListChunk(usersSet)
             return (
-                <div className="row" key={i}>
+                <div className="row user-row" key={i}>
                     <div className="col-md-12">
                         <div className="row">
                             {listChunk.list}
@@ -74,19 +74,6 @@ export default class Home extends React.Component {
 
             )
         })
-    }
-    get style() {
-        return {
-            video: {
-                display: 'inline-block',
-                height: 169,
-                marginRight: 20,
-                overflow: 'hidden'
-            },
-            thumbnail: {
-                width: '100%'
-            }
-        }
     }
     render() {
         return (

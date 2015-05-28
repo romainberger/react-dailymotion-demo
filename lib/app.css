@@ -7,6 +7,7 @@ body {
 .user-display {
     position: relative;
     height: 0;
+    margin: 10px 0;
     transition: height .1s linear;
     overflow: hidden;
     font-size: 0;
@@ -14,4 +15,8 @@ body {
 
 .user-display.current {
     height: 358px;
+}
+
+.user-row {
+    margin: 20px 0;
 }
