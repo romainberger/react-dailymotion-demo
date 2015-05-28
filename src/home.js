@@ -11,7 +11,7 @@ export default class Home extends React.Component {
         this.state = {users: []}
     }
     componentWillMount() {
-        request('GET', 'https://api.dailymotion.com/users?list=recommended&fields=username,avatar_360_url&limit=12')
+        request('GET', 'https://api.dailymotion.com/users?list=recommended&fields=username,avatar_360_url&limit=24')
             .send()
             .set('Accept', 'application/json')
             .end((err, res) => {
@@ -22,7 +22,7 @@ export default class Home extends React.Component {
         if (typeof cache[id] === 'undefined') {
             cache[id] = this.props.user.list.map((video, i) => {
                 return (
-                    <div style={this.style.video} key={i}>
+                    <div className="col-md-1" style={this.style.video} key={i}>
                         <img src={video.thumbnail_360_url} style={this.style.thumbnail} />
                     </div>
                 )
@@ -32,32 +32,46 @@ export default class Home extends React.Component {
         return cache[id]
     }
     getUserListChunk(users) {
-        return users.map((user, i) => {
+        let userDisplay = null
+
+        let list = users.map((user, i) => {
             let isCurrentUser = this.props.params.id === user.username
             let className = isCurrentUser ? 'current' : 'off'
 
+            if (isCurrentUser) {
+                userDisplay = this.getUserDisplay(user.username)
+            }
+
             return (
-                <div key={i} style={this.style.userRow}>
+                <div className="col-md-2" key={i}>
                     <div>
                         <Link to="home" params={{id: user.username}}>
-                            <img src={user.avatar_360_url} title={user.username} />
+                            <img src={user.avatar_360_url} title={user.username} width="100%" />
                         </Link>
-                    </div>
-                    <div className={`user-display ${className}`}>
-                        {isCurrentUser ? this.getUserDisplay(user.username) : ''}
                     </div>
                 </div>
             )
         })
+
+        return {list: list, display: userDisplay}
     }
     getUsersList() {
-        let users = [this.state.users.slice(0, 4), this.state.users.slice(4, 8), this.state.users.slice(8, 12)]
+        let users = [this.state.users.slice(0, 6), this.state.users.slice(6, 12), this.state.users.slice(12, 18), this.state.users.slice(18, 24)]
 
         return users.map((usersSet, i) => {
+            let listChunk = this.getUserListChunk(usersSet)
             return (
-                <div key={i}>
-                    {this.getUserListChunk(usersSet)}
+                <div className="row" key={i}>
+                    <div className="col-md-12">
+                        <div className="row">
+                            {listChunk.list}
+                        </div>
+                        <div className={'row user-display ' + (listChunk.display ? 'current' : '')}>
+                            {listChunk.display}
+                        </div>
+                    </div>
                 </div>
+
             )
         })
     }
@@ -65,16 +79,12 @@ export default class Home extends React.Component {
         return {
             video: {
                 display: 'inline-block',
-                width: 300,
                 height: 169,
                 marginRight: 20,
                 overflow: 'hidden'
             },
             thumbnail: {
                 width: '100%'
-            },
-            userRow: {
-                display: 'inline-block'
             }
         }
     }

@@ -10,7 +10,7 @@ export default function getUserInfos(id = false) {
             return
         }
 
-        request('GET', `https://api.dailymotion.com/user/${id}/videos?fields=id,title,thumbnail_360_url`)
+        request('GET', `https://api.dailymotion.com/user/${id}/videos?fields=id,title,thumbnail_360_url&limit=12`)
             .send()
             .set('Accept', 'application/json')
             .end((err, res) => {
