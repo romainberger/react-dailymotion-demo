@@ -8,7 +8,7 @@ body {
     position: relative;
     height: 0;
     margin: 10px 0;
-    transition: height .1s linear;
+    transition: height .5s linear;
     overflow: hidden;
     font-size: 0;
 }
