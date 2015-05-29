@@ -20,3 +20,15 @@ body {
 .user-row {
     margin: 20px 0;
 }
+
+.player-wrapper {
+    text-align: center;
+}
+
+iframe {
+    display: inline-block;
+    width: 540px;
+    height: 304px;
+    margin: 20px auto 0 auto;
+    border: 0;
+}

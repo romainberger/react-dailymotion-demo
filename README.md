@@ -2,6 +2,8 @@
 
 Just a little demo of the React awesomeness.
 
+[Live Demo](https://romainberger.github.io/react-dailymotion-demo)
+
 Rip off of a [Ryan Florence demo](https://youtu.be/z5e7kWSHWTg?t=22m21s).
 
 ## Usage

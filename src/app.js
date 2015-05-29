@@ -14,8 +14,9 @@ class App extends React.Component {
 }
 
 const routes = (
-    <Route handler={App}>
-        <Route name="home" path="/:id?" handler={Home} ignoreScrollBehavior={true}/>
+    <Route handler={App} ignoreScrollBehavior={true}>
+        <Route name="home" path="/:id?" handler={Home}/>
+        <Route name="video" path="/:id/:videoId" handler={Home}/>
     </Route>
 )
 

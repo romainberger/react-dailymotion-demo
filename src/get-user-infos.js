@@ -5,6 +5,11 @@ const cache = {}
 
 export default function getUserInfos(id = false) {
     return new Promise((resolve) => {
+        if (!id) {
+            resolve(null)
+            return
+        }
+
         if (typeof cache[id] === 'object') {
             resolve(cache[id])
             return

@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "webpack": "./node_modules/.bin/webpack --progress --colors --display-error-details --config ./entry.js --watch",
-    "build": "./node_modules/.bin/webpack --progress --colors --display-error-details -p --config ./entry.js --watch"
+    "build": "./node_modules/.bin/webpack --progress --colors --display-error-details -p --config ./entry.js --watch",
+    "server": "python -m SimpleHTTPServer"
   },
   "author": "Romain Berger <romain@romainberger.com>",
   "license": "MIT",
